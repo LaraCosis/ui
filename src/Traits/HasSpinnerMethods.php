@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraCosis\Ui\Traits;
+namespace Laracosis\Ui\Traits;
 
 use LaraCosis\Ui\Helpers\SpinnerRegistry;
 
