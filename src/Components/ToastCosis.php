@@ -19,6 +19,6 @@ class ToastCosis extends Component
 
     public function render()
     {
-        return view('laracosis::toggle-cosis');
+        return view('laracosis::toast-cosis');
     }
 }
