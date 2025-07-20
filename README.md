@@ -26,7 +26,7 @@ Agregá Alpine.js y Tailwind si tu proyecto aún no los tiene.
 ## Ejemplo rápido
 
 ```blade
-<x-cosis-toggle wire:model="is_active" label="Activo" />
+<x-toggle-cosis wire:model="is_active" label="Activo" />
 ```
 
 ---
