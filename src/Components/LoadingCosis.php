@@ -8,12 +8,18 @@ use Illuminate\Support\Collection;
 class LoadingCosis extends Component
 {
     // No usar $options nunca
-   
+    public $customView;
+
+    public function __construct($customView = null)
+    {
+        $this->customView = $customView;
+    }
+
     public function render()
     {
-        // Renderiza el componente Livewire
         return <<<'blade'
-            <livewire:loading-cosis />
+            <livewire:loading-cosis :customView="$customView" />
         blade;
     }
+
 }
