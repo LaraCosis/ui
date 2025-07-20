@@ -1,0 +1,24 @@
+{
+    "name": "laracosis/ui",
+    "description": "UI components for Laravel: CustomSelect and more",
+    "type": "library",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "Laracosis\\Ui\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laracosis\\Ui\\UiServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "license": "MIT"
+}
