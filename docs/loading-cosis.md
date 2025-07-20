@@ -27,6 +27,62 @@ Este componente te permite mostrar un spinner global de loading en cualquier mom
 
 ---
 
+## 🧩 El ejemplo final que te va a servir
+
+Probablemente en tu componente quieras que al iniciar una o más funciones se muestre el spinner y al finalizar estas funciones desaparezca.
+Livewire hace que esto sea bastante complejo out-of-the-box sin tener que hacer tu propio spinner, ponerlo en el blade, llamarlo con wire:target, etc.
+Esta es la solución
+
+```php
+use Laracosis\Ui\Traits\HasSpinnerMethods;
+
+class MySlowComponent extends Component
+{
+    use HasSpinnerMethods;
+
+    public $spinnerMethods = ['getALotOfDataFromSlowStorage', 'otraFuncionLenta']; // *Importante*
+    
+    public function getALotOfDataFromSlowStorage() {
+        
+        $this->getAllThatData();
+
+        $this->closeSpinner(); // *Importante*
+
+    }
+}
+```
+
+> Si no seteas $spinnerMethods tenes que lanzarlo de la forma manual (php o alpine).
+>Si no cerrás el spinner al finalizar la función nunca va a desaparecer.
+
+#### Blade
+
+Si tenés un boton/select/coso en blade y te sirve customizar el mensaje __no uses $spinnerMethods__
+y llamá al spinner en el evento.
+
+```blade
+<!-- Mostrar spinner al hacer click -->
+<button @click="showSpinner('Cargando desde Alpine...')" wire:click="getALotOfDataFromSlowStorage">Mostrar spinner</button>
+```
+
+> La regla de antes sigue aplicando, cerrá el spinner después de mostrarlo con __$this->closeSpinner__ o con __@click="closeSpinner()"__
+> __Si no lo cerrás no se va a ir nunca nunca nunca__
+
+#### Tablal del saber
+
+| #     | Que hace       |
+|:------------ |:------------:|
+| public $spinnerMethods; | Es un array con el nombre de las funciones que querés que muestren el spinner al ejecutarse |
+| $this->closeSpinner(); | Es un helper que emite el evento de cierre del spinner |
+| @click="showSpinner('Me mensaje custom...')" | Muestra el spinner con el mensaje que se pase en la función
+
+
+
+
+
+
+---
+
 ## 🚀 Modo Automático (recomendado para UX instantáneo)
 
 ### ¿Cómo funciona?
@@ -76,11 +132,11 @@ Este componente te permite mostrar un spinner global de loading en cualquier mom
 1. **Agregá el trait:**
 
    ```php
-   use Laracosis\Ui\Traits\ShowsGlobalSpinner;
+   use Laracosis\Ui\Traits\HasSpinnerMethods;
 
    class Dashboard extends Component
    {
-       use ShowsGlobalSpinner;
+       use HasSpinnerMethods;
        
        public function mifuncion() {
            $this->showSpinner('¡Procesando gastos!');
@@ -238,11 +294,11 @@ class Dashboard extends Component
 O manual:
 
 ```php
-use Laracosis\Ui\Traits\ShowsGlobalSpinner;
+use Laracosis\Ui\Traits\HasSpinnerMethods;
 
 class Dashboard extends Component
 {
-    use ShowsGlobalSpinner;
+    use HasSpinnerMethods;
     public function mifuncion() {
         $this->showSpinner('¡Procesando!');
         sleep(2);
