@@ -5,7 +5,7 @@ namespace Laracosis\Ui\Components;
 use Illuminate\View\Component;
 use Illuminate\Support\Collection;
 
-class BotonCosis extends Component
+class ButtonCosis extends Component
 {
     // No usar $options nunca
    
