@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraCosis\Ui\Components\Livewire;
+namespace Laracosis\Ui\Components\Livewire;
 
 use Livewire\Component;
 use LaraCosis\Ui\Helpers\SpinnerRegistry;

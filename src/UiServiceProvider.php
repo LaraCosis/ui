@@ -11,7 +11,7 @@ class UiServiceProvider extends ServiceProvider
     {
 
         $this->registerLivewireComponents();
-        
+
         // Publish views
         $this->loadViewsFrom(__DIR__.'/../resources/views/components', 'laracosis');
 
@@ -27,7 +27,7 @@ class UiServiceProvider extends ServiceProvider
     public function registerLivewireComponents()
     {
         // Register Livewire components
-        \Livewire\Livewire::component('loading-cosis', \Laracosis\Ui\Http\Livewire\LoadingCosis::class);
+        \Livewire\Livewire::component('loading-cosis', \Laracosis\Ui\Components\Livewire\LoadingCosis::class);
     }   
 
     public function registerCustomComponents()
