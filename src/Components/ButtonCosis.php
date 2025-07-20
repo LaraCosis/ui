@@ -19,6 +19,6 @@ class ButtonCosis extends Component
 
     public function render()
     {
-        return view('laracosis::boton-cosis');
+        return view('laracosis::button-cosis');
     }
 }
