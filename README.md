@@ -17,6 +17,7 @@ Agregá Alpine.js y Tailwind si tu proyecto aún no los tiene.
 
 ## Documentación de componentes
 
+- [Input (`<x-input-cosis>`)](docs/input-cosis.md)
 - [Button (`<x-button-cosis>`)](docs/button-cosis.md)
 - [Select (`<x-select-cosis>`)](docs/select-cosis.md)
 - [Toggle (`<x-toggle-cosis>`)](docs/toggle-cosis.md)
