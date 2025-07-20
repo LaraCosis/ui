@@ -38,5 +38,6 @@ class UiServiceProvider extends ServiceProvider
         Blade::component(\Laracosis\Ui\Components\InputCosis::class, 'input-cosis');
         Blade::component(\Laracosis\Ui\Components\LoadingCosis::class, 'loading-cosis');
         Blade::component(\Laracosis\Ui\Components\ButtonCosis::class, 'button-cosis');
+        Blade::component(\Laracosis\Ui\Components\ToastCosis::class, 'toast-cosis');
     }
 }
