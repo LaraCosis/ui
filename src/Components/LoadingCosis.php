@@ -9,16 +9,11 @@ class LoadingCosis extends Component
 {
     // No usar $options nunca
    
-
-    public function __construct(
-
-    ) {
-
-    }
-
-
     public function render()
     {
-        return view('laracosis::loading-cosis');
+        // Renderiza el componente Livewire
+        return <<<'blade'
+            <livewire:loading-cosis />
+        blade;
     }
 }

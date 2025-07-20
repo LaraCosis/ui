@@ -46,7 +46,6 @@ class SelectCosis extends Component
 
     protected function normalizeOptions($options)
     {
-        logger()->debug('Normalizing options', ['options' => $options]);
         // Si es Collection, convertir a array
         if ($options instanceof Collection) {
             $options = $options->all();
