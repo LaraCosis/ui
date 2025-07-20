@@ -7,6 +7,9 @@
     'spinner' => true,
     'outline' => false,
     'disabled' => false,
+    'forInputStart' => false,
+    'forInputEnd' => false,
+    'label' => null,
 ])
 
 @php
@@ -339,6 +342,22 @@
         . ' overflow-hidden';
 
 
+
+    // Chequear si está en modo "input"
+    $forInput = isset(${'for-input-start'}) || isset(${'for-input-end'});
+
+    // Si está en modo input, override algunas clases
+    if ($forInput) {
+        $buttonClass =
+            'h-8 px-3 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition focus:outline-none focus:ring-0'
+            . (isset(${'for-input-start'}) ? ' rounded-l-md border-r border-gray-300 dark:border-gray-700' : '')
+            . (isset(${'for-input-end'}) ? ' rounded-r-md border-l border-gray-300 dark:border-gray-700' : '');
+
+        $spinnerColor = 'text-gray-700 dark:text-gray-100';
+
+    }
+
+
     $target = $attributes->get('wire:target');
 
     // Detectar wire:target automáticamente
@@ -365,11 +384,11 @@
 
 <span class="flex items-center justify-center w-full relative">
     {{-- Texto visible solo si NO está loading --}}
-    <span class="truncate text-center" wire:loading.remove wire:target="{{$wireTarget}}">
+    <span class="text-center" wire:loading.remove wire:target="{{$wireTarget}}">
         @if($icon && $iconPosition === 'left')
             <i class="{{ $icon }} mr-2"></i>
         @endif
-        {{ $slot }}
+        {{ trim($slot) !== '' ? $slot : $label }}
         @if($icon && $iconPosition === 'right')
             <i class="{{ $icon }} ml-2"></i>
         @endif
@@ -391,7 +410,7 @@
         @if($icon && $iconPosition === 'left')
             <i class="{{ $icon }} mr-2"></i>
         @endif
-        {{ $slot }}
+        {{ trim($slot) !== '' ? $slot : $label }}
         @if($icon && $iconPosition === 'right')
             <i class="{{ $icon }} ml-2"></i>
         @endif
