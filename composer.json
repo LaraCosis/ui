@@ -2,7 +2,7 @@
     "name": "laracosis/ui",
     "description": "UI components for Laravel: CustomSelect and more",
     "type": "library",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "autoload": {
         "psr-4": {
             "Laracosis\\Ui\\": "src/"
