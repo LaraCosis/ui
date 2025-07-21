@@ -28,7 +28,8 @@ class UiServiceProvider extends ServiceProvider
     {
         // Register Livewire components
         \Livewire\Livewire::component('loading-cosis', \Laracosis\Ui\Components\Livewire\LoadingCosis::class);
-    }   
+        \Livewire\Livewire::component('toast-cosis', \Laracosis\Ui\Components\Livewire\ToastCosis::class);
+    }
 
     public function registerCustomComponents()
     {

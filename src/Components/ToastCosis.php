@@ -19,6 +19,8 @@ class ToastCosis extends Component
 
     public function render()
     {
-        return view('laracosis::toast-cosis');
+        return <<<'blade'
+            <livewire:toast-cosis />
+        blade;
     }
 }
