@@ -3,24 +3,27 @@
 namespace Laracosis\Ui\Components\Livewire;
 
 use Livewire\Component;
-use Laracosis\Ui\Helpers\SpinnerRegistry;
+use Livewire\Attributes\On;
 
 class ToastCosis extends Component
 {
     public $toasts = [];
+    public $position;
+
 
     protected $listeners = ['toast-cosis' => 'addToast'];
 
     public function addToast($toast)
     {
-        // Asegurarse de id único
         $toast['id'] = $toast['id'] ?? uniqid();
+        $toast['duration'] = $toast['duration'] ?? 4000;
+        $toast['position'] = $toast['position'] ?? $this->position;
         $this->toasts[] = $toast;
     }
 
     public function removeToast($id)
     {
-        $this->toasts = array_filter($this->toasts, fn($toast) => $toast['id'] !== $id);
+        $this->toasts = array_values(array_filter($this->toasts, fn($t) => $t['id'] !== $id));
     }
 
     public function render()

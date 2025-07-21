@@ -2,6 +2,8 @@
 
 namespace Laracosis\Ui\Traits;
 
+use Illuminate\Support\Str;
+
 trait HasToastCosis
 {
     public function toast()
@@ -10,33 +12,29 @@ trait HasToastCosis
             public function __construct($component) {
                 $this->component = $component;
             }
-
-            public function success($title, $message = '', $icon = 'heroicon-o-check-circle', $duration = 4000) {
-                return $this->send('success', $title, $message, $icon, $duration);
+            public function success($title, $message = '', $duration = 4000, $position = null) {
+                return $this->send('success', $title, $message, $duration, $position);
             }
-
-            public function error($title, $message = '', $icon = 'heroicon-o-x-circle', $duration = 4000) {
-                return $this->send('error', $title, $message, $icon, $duration);
+            public function error($title, $message = '', $duration = 4000, $position = null) {
+                return $this->send('error', $title, $message, $duration, $position);
             }
-
-            public function info($title, $message = '', $icon = 'heroicon-o-information-circle', $duration = 4000) {
-                return $this->send('info', $title, $message, $icon, $duration);
+            public function info($title, $message = '', $duration = 4000, $position = null) {
+                return $this->send('info', $title, $message, $duration, $position);
             }
-
-            public function warning($title, $message = '', $icon = 'heroicon-o-exclamation', $duration = 4000) {
-                return $this->send('warning', $title, $message, $icon, $duration);
+            public function warning($title, $message = '', $duration = 4000, $position = null) {
+                return $this->send('warning', $title, $message, $duration, $position);
             }
-
-            protected function send($type, $title, $message, $icon, $duration)
+            protected function send($type, $title, $message, $duration, $position)
             {
-                $this->component->dispatch('toast-cosis', [
-                    'id' => uniqid(),
+                $payload = [
+                    'id' => (string) \Illuminate\Support\Str::uuid(),
                     'type' => $type,
                     'title' => $title,
                     'message' => $message,
-                    'icon' => $icon,
                     'duration' => $duration,
-                ]);
+                ];
+                if ($position) $payload['position'] = $position;
+                $this->component->dispatch('toast-cosis', $payload);
             }
         };
     }
