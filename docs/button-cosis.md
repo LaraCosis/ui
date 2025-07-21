@@ -24,7 +24,7 @@ Un botón increíblemente flexible, con soporte para múltiples colores, variant
 ```blade
 <x-button-cosis wire:click="guardar" size="md" color="primary">
     Guardar
-</x-boton-cosis>
+</x-button-cosis>
 ```
 
 ## Ejemplo con icono, outline y spinner
@@ -32,16 +32,16 @@ Un botón increíblemente flexible, con soporte para múltiples colores, variant
 ```blade
 <x-button-cosis wire:click="borrar" color="danger" outline="true" icon="fa fa-trash" iconPosition="right">
     Borrar todo
-</x-boton-cosis>
+</x-button-cosis>
 ```
 
 ## Ejemplo de todos los colores y variantes (tint, pastel, glass)
 
 ```blade
 <div class="flex flex-wrap gap-2 mb-4">
-    <x-button-cosis color="primary-tint" wire:click="loadingcosis">Primary Tint</x-boton-cosis>
-    <x-button-cosis color="success-pastel" wire:click="loadingcosis">Success Pastel</x-boton-cosis>
-    <x-button-cosis color="danger-glass" wire:click="loadingcosis">Danger Glass</x-boton-cosis>
+    <x-button-cosis color="primary-tint" wire:click="loadingcosis">Primary Tint</x-button-cosis>
+    <x-button-cosis color="success-pastel" wire:click="loadingcosis">Success Pastel</x-button-cosis>
+    <x-button-cosis color="danger-glass" wire:click="loadingcosis">Danger Glass</x-button-cosis>
     ...
 </div>
 ```
@@ -87,83 +87,83 @@ Un botón increíblemente flexible, con soporte para múltiples colores, variant
     <div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Sólidos</h2>
         <div class="flex flex-wrap gap-2">
-            <x-button-cosis color="primary" >Primary</x-boton-cosis>
-            <x-button-cosis color="secondary" >Secondary</x-boton-cosis>
-            <x-button-cosis color="success" >Success</x-boton-cosis>
-            <x-button-cosis color="danger" >Danger</x-boton-cosis>
-            <x-button-cosis color="info" >Info</x-boton-cosis>
-            <x-button-cosis color="warning" >Warning</x-boton-cosis>
-            <x-button-cosis color="muted" >Muted</x-boton-cosis>
-            <x-button-cosis color="light" >Light</x-boton-cosis>
-            <x-button-cosis color="dark" >Dark</x-boton-cosis>
-            <x-button-cosis color="accent" >Accent</x-boton-cosis>
-            <x-button-cosis color="neutral" >Neutral</x-boton-cosis>
-            <x-button-cosis color="white" >White</x-boton-cosis>
-            <x-button-cosis color="black" >Black</x-boton-cosis>
+            <x-button-cosis color="primary" >Primary</x-button-cosis>
+            <x-button-cosis color="secondary" >Secondary</x-button-cosis>
+            <x-button-cosis color="success" >Success</x-button-cosis>
+            <x-button-cosis color="danger" >Danger</x-button-cosis>
+            <x-button-cosis color="info" >Info</x-button-cosis>
+            <x-button-cosis color="warning" >Warning</x-button-cosis>
+            <x-button-cosis color="muted" >Muted</x-button-cosis>
+            <x-button-cosis color="light" >Light</x-button-cosis>
+            <x-button-cosis color="dark" >Dark</x-button-cosis>
+            <x-button-cosis color="accent" >Accent</x-button-cosis>
+            <x-button-cosis color="neutral" >Neutral</x-button-cosis>
+            <x-button-cosis color="white" >White</x-button-cosis>
+            <x-button-cosis color="black" >Black</x-button-cosis>
         </div>
     </div>
 
     <div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Outline</h2>
         <div class="flex flex-wrap gap-2">
-            <x-button-cosis color="primary" outline="true" >Primary</x-boton-cosis>
-            <x-button-cosis color="secondary" outline="true" >Secondary</x-boton-cosis>
-            <x-button-cosis color="success" outline="true" >Success</x-boton-cosis>
-            <x-button-cosis color="danger" outline="true" >Danger</x-boton-cosis>
-            <x-button-cosis color="info" outline="true" >Info</x-boton-cosis>
-            <x-button-cosis color="warning" outline="true" >Warning</x-boton-cosis>
-            <x-button-cosis color="muted" outline="true" >Muted</x-boton-cosis>
-            <x-button-cosis color="light" outline="true" >Light</x-boton-cosis>
-            <x-button-cosis color="dark" outline="true" >Dark</x-boton-cosis>
-            <x-button-cosis color="accent" outline="true" >Accent</x-boton-cosis>
-            <x-button-cosis color="neutral" outline="true" >Neutral</x-boton-cosis>
-            <x-button-cosis color="white" outline="true" >White</x-boton-cosis>
-            <x-button-cosis color="black" outline="true" >Black</x-boton-cosis>
+            <x-button-cosis color="primary" outline="true" >Primary</x-button-cosis>
+            <x-button-cosis color="secondary" outline="true" >Secondary</x-button-cosis>
+            <x-button-cosis color="success" outline="true" >Success</x-button-cosis>
+            <x-button-cosis color="danger" outline="true" >Danger</x-button-cosis>
+            <x-button-cosis color="info" outline="true" >Info</x-button-cosis>
+            <x-button-cosis color="warning" outline="true" >Warning</x-button-cosis>
+            <x-button-cosis color="muted" outline="true" >Muted</x-button-cosis>
+            <x-button-cosis color="light" outline="true" >Light</x-button-cosis>
+            <x-button-cosis color="dark" outline="true" >Dark</x-button-cosis>
+            <x-button-cosis color="accent" outline="true" >Accent</x-button-cosis>
+            <x-button-cosis color="neutral" outline="true" >Neutral</x-button-cosis>
+            <x-button-cosis color="white" outline="true" >White</x-button-cosis>
+            <x-button-cosis color="black" outline="true" >Black</x-button-cosis>
         </div>
     </div>
 
     <div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Tint (liviano, fondo apenas tintado)</h2>
         <div class="flex flex-wrap gap-2">
-            <x-button-cosis color="primary-tint" >Primary Tint</x-boton-cosis>
-            <x-button-cosis color="secondary-tint" >Secondary Tint</x-boton-cosis>
-            <x-button-cosis color="success-tint" >Success Tint</x-boton-cosis>
-            <x-button-cosis color="danger-tint" >Danger Tint</x-boton-cosis>
-            <x-button-cosis color="info-tint" >Info Tint</x-boton-cosis>
-            <x-button-cosis color="warning-tint" >Warning Tint</x-boton-cosis>
-            <x-button-cosis color="accent-tint" >Accent Tint</x-boton-cosis>
-            <x-button-cosis color="neutral-tint" >Neutral Tint</x-boton-cosis>
-            <x-button-cosis color="dark-tint" >Dark Tint</x-boton-cosis>
+            <x-button-cosis color="primary-tint" >Primary Tint</x-button-cosis>
+            <x-button-cosis color="secondary-tint" >Secondary Tint</x-button-cosis>
+            <x-button-cosis color="success-tint" >Success Tint</x-button-cosis>
+            <x-button-cosis color="danger-tint" >Danger Tint</x-button-cosis>
+            <x-button-cosis color="info-tint" >Info Tint</x-button-cosis>
+            <x-button-cosis color="warning-tint" >Warning Tint</x-button-cosis>
+            <x-button-cosis color="accent-tint" >Accent Tint</x-button-cosis>
+            <x-button-cosis color="neutral-tint" >Neutral Tint</x-button-cosis>
+            <x-button-cosis color="dark-tint" >Dark Tint</x-button-cosis>
         </div>
     </div>
 
     <div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Pastel (ultra suave)</h2>
         <div class="flex flex-wrap gap-2">
-            <x-button-cosis color="primary-pastel" >Primary Pastel</x-boton-cosis>
-            <x-button-cosis color="secondary-pastel" >Secondary Pastel</x-boton-cosis>
-            <x-button-cosis color="success-pastel" >Success Pastel</x-boton-cosis>
-            <x-button-cosis color="danger-pastel" >Danger Pastel</x-boton-cosis>
-            <x-button-cosis color="info-pastel" >Info Pastel</x-boton-cosis>
-            <x-button-cosis color="warning-pastel" >Warning Pastel</x-boton-cosis>
-            <x-button-cosis color="accent-pastel" >Accent Pastel</x-boton-cosis>
-            <x-button-cosis color="neutral-pastel" >Neutral Pastel</x-boton-cosis>
-            <x-button-cosis color="dark-pastel" >Dark Pastel</x-boton-cosis>
+            <x-button-cosis color="primary-pastel" >Primary Pastel</x-button-cosis>
+            <x-button-cosis color="secondary-pastel" >Secondary Pastel</x-button-cosis>
+            <x-button-cosis color="success-pastel" >Success Pastel</x-button-cosis>
+            <x-button-cosis color="danger-pastel" >Danger Pastel</x-button-cosis>
+            <x-button-cosis color="info-pastel" >Info Pastel</x-button-cosis>
+            <x-button-cosis color="warning-pastel" >Warning Pastel</x-button-cosis>
+            <x-button-cosis color="accent-pastel" >Accent Pastel</x-button-cosis>
+            <x-button-cosis color="neutral-pastel" >Neutral Pastel</x-button-cosis>
+            <x-button-cosis color="dark-pastel" >Dark Pastel</x-button-cosis>
         </div>
     </div>
 
     <div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Glass (glassmorphism, translúcido)</h2>
         <div class="flex flex-wrap gap-2">
-            <x-button-cosis color="primary-glass" >Primary Glass</x-boton-cosis>
-            <x-button-cosis color="secondary-glass" >Secondary Glass</x-boton-cosis>
-            <x-button-cosis color="success-glass" >Success Glass</x-boton-cosis>
-            <x-button-cosis color="danger-glass" >Danger Glass</x-boton-cosis>
-            <x-button-cosis color="info-glass" >Info Glass</x-boton-cosis>
-            <x-button-cosis color="warning-glass" >Warning Glass</x-boton-cosis>
-            <x-button-cosis color="accent-glass" >Accent Glass</x-boton-cosis>
-            <x-button-cosis color="neutral-glass" >Neutral Glass</x-boton-cosis>
-            <x-button-cosis color="dark-glass" >Dark Glass</x-boton-cosis>
+            <x-button-cosis color="primary-glass" >Primary Glass</x-button-cosis>
+            <x-button-cosis color="secondary-glass" >Secondary Glass</x-button-cosis>
+            <x-button-cosis color="success-glass" >Success Glass</x-button-cosis>
+            <x-button-cosis color="danger-glass" >Danger Glass</x-button-cosis>
+            <x-button-cosis color="info-glass" >Info Glass</x-button-cosis>
+            <x-button-cosis color="warning-glass" >Warning Glass</x-button-cosis>
+            <x-button-cosis color="accent-glass" >Accent Glass</x-button-cosis>
+            <x-button-cosis color="neutral-glass" >Neutral Glass</x-button-cosis>
+            <x-button-cosis color="dark-glass" >Dark Glass</x-button-cosis>
         </div>
     </div>
 </div>
