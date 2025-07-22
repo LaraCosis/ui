@@ -29,6 +29,7 @@ class UiServiceProvider extends ServiceProvider
         // Register Livewire components
         \Livewire\Livewire::component('loading-cosis', \Laracosis\Ui\Components\Livewire\LoadingCosis::class);
         \Livewire\Livewire::component('toast-cosis', \Laracosis\Ui\Components\Livewire\ToastCosis::class);
+        \Livewire\Livewire::component('toggle-theme-cosis', \Laracosis\Ui\Components\Livewire\ToggleThemeCosis::class);
     }
 
     public function registerCustomComponents()
@@ -43,6 +44,8 @@ class UiServiceProvider extends ServiceProvider
         Blade::component(\Laracosis\Ui\Components\ModalCosis::class, 'modal-cosis');
         Blade::component(\Laracosis\Ui\Components\HeaderCosis::class, 'header-cosis');
         Blade::component(\Laracosis\Ui\Components\SidebarCosis::class, 'sidebar-cosis');
+        Blade::component(\Laracosis\Ui\Components\ToggleThemeCosis::class, 'toggle-theme-cosis');
+        Blade::component(\Laracosis\Ui\Components\LayoutCosis::class, 'layout-cosis');
 
     }
 }
