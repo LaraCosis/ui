@@ -1,6 +1,6 @@
 @props([
     'logo' => null,
-    'title' => 'LaraCosis Playground',
+    'title' => env('APP_NAME', 'LaraCosis'),
 ])
 
 <header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 h-16 flex items-center px-6 shadow-sm z-30">

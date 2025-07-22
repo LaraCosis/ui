@@ -10,6 +10,7 @@
     'forInputStart' => false,
     'forInputEnd' => false,
     'label' => null,
+    'href' => null
 ])
 
 @php
@@ -316,6 +317,73 @@
             'dark' => 'dark:bg-gray-800/30 dark:hover:bg-gray-800/50 dark:text-white',
             'outline' => 'text-gray-800 border-transparent bg-gray-900/20 hover:bg-gray-900/30 backdrop-blur-md dark:text-white dark:border-transparent dark:bg-gray-800/30 dark:hover:bg-gray-800/50',
         ],
+        'violet-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-fuchsia-600 to-blue-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'pink-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'orange-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'green-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-green-400 via-emerald-500 to-cyan-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'blue-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-400 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'indigo-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'sunset-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-pink-400 via-orange-400 to-yellow-300 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'ocean-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'fire-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'lime-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-lime-400 via-green-400 to-emerald-500 text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+        'dark-gradient' => [
+            'bg' => 'px-8 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white shadow-lg hover:scale-105 transition-transform rounded-full text-lg font-semibold',
+            'border' => '',
+            'dark' => '',
+            'outline' => '',
+        ],
+
     ];
 
     $spinnerColor = 'text-white dark:text-gray-200'; // default (sólido)
@@ -357,6 +425,13 @@
 
     }
 
+    if(Str::endsWith($color, 'gradient')) {
+        // Si es un botón con gradiente, no hay spinner
+        $spinner = false;
+        $spinnerColor = 'text-transparent'; // Spinner invisible
+        $buttonClass = $sizes[$size] . ' '. $main[$color]['bg']; // Asegurar que el texto sea blanco en gradiente
+    }
+
 
     $target = $attributes->get('wire:target');
 
@@ -379,6 +454,8 @@
         'class' => $buttonClass,
         'disabled' => $disabled ? 'disabled' : null,
     ]) }}
+
+    @if($href) onclick="location.href='{{ $href }}'; return false;" role="link" @endif
 >
 
 
@@ -397,7 +474,7 @@
     <span
         wire:loading
         wire:target="{{$wireTarget}}"
-        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+        class="hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
     >
         <svg class="animate-spin {{$spinnerSizes[$size]}} {{$spinnerColor}}" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -406,7 +483,7 @@
 
     </span>
     {{-- Span fantasma visible siempre, para reservar el ancho del texto --}}
-    <span class="invisible pointer-events-none select-none" wire:loading wire:target="{{$wireTarget}}">
+    <span class="hidden invisible pointer-events-none select-none" wire:loading wire:target="{{$wireTarget}}">
         @if($icon && $iconPosition === 'left')
             <i class="{{ $icon }} mr-2"></i>
         @endif
