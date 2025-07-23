@@ -22,6 +22,12 @@ class UiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views/components' => resource_path('views/vendor/laracosis'),
         ], 'laracosis-ui-components');
+
+        $this->publishes([
+            __DIR__.'/../config/twigui' => config_path('twigui'),
+        ], 'laracosis-ui-config');
+
+        $this->publishPresets();
     }
 
     public function registerLivewireComponents()
@@ -46,6 +52,20 @@ class UiServiceProvider extends ServiceProvider
         Blade::component(\Laracosis\Ui\Components\SidebarCosis::class, 'sidebar-cosis');
         Blade::component(\Laracosis\Ui\Components\ToggleThemeCosis::class, 'toggle-theme-cosis');
         Blade::component(\Laracosis\Ui\Components\LayoutCosis::class, 'layout-cosis');
+        Blade::component(\Laracosis\Ui\Components\NavCosis::class, 'nav-cosis');
 
+    }
+
+    public function publishPresets() {
+            $this->publishes([
+                __DIR__ . '/../resources/views/presets/nav/colors.blade.php' => resource_path('views/vendor/twigui/presets/nav/colors.blade.php'),
+            ], 'twigui-nav-presets');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views/presets/nav/colors.php' => resource_path('views/vendor/twigui/presets/nav/colors.php'),
+                // Agregá otros presets acá:
+                // __DIR__ . '/../resources/views/presets/button/colors.php' => resource_path('views/vendor/twigui/presets/button/colors.php'),
+                // __DIR__ . '/../resources/views/presets/table/colors.php' => resource_path('views/vendor/twigui/presets/table/colors.php'),
+            ], 'twigui-presets');
     }
 }

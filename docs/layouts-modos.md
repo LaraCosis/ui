@@ -1,103 +1,135 @@
-# Modos de Layout para LaraCosis UI
+# LayoutCosis
 
-Este documento explica cómo estructurar y configurar el layout de tu aplicación con los componentes `<x-header-cosis>` y `<x-sidebar-cosis>`, para lograr cualquiera de estos 3 modos:
-
-* **Push** (sidebar empuja el contenido y el header)
-* **Header sobre Sidebar** (el header siempre arriba, tapa el sidebar)
-* **Sidebar sobre Header** (el sidebar tapa al header, flota sobre todo)
+Componente Blade flexible para layouts de aplicaciones, con soporte para sidebar colapsable, sticky/fixed, mini-sidebar y 100% configurable con props.
 
 ---
 
-## 1. Push (modo por defecto)
+## 🚀 Características principales
 
-El sidebar es parte del flujo del layout. El header y el main ocupan sólo el espacio restante.
+* Header sticky (opcional)
+* Sidebar sticky/fixed o “grow”
+* Sidebar colapsable (con o sin mini-sidebar)
+* Botón de colapso integrable en sidebar o en header
+* Footer fijo (opcional)
+* Offsets automáticos para que todo se alinee
+* Soporte para variantes: header sobre sidebar, sidebar en row, etc.
+* Personalización total de tamaños en rem
+* Animaciones suaves con Alpine.js + Tailwind
+
+---
+
+## 🧩 Props disponibles
+
+| Prop                  | Tipo      | Default | Descripción                                        |
+| --------------------- | --------- | ------- | -------------------------------------------------- |
+| stickyHeader          | bool      | false   | Header sticky                                      |
+| stickySidebar         | bool      | false   | Sidebar sticky/fixed                               |
+| footerFixed           | bool      | false   | Footer fixed                                       |
+| sidebarGrow           | bool      | false   | Sidebar usa grow/sticky en vez de fixed            |
+| sidebarOver           | bool      | false   | Header arriba de todo (no como parte del flex row) |
+| sidebarWidth          | int/float | 16      | Ancho del sidebar expandido, en rem                |
+| collapsedSidebarWidth | int/float | 4       | Ancho del sidebar colapsado, en rem                |
+| footerHeight          | int/float | 3       | Altura del footer, en rem                          |
+| headerHeight          | int/float | 3.5     | Altura del header, en rem                          |
+| collapsibleSidebar    | bool      | false   | Sidebar colapsable con botón                       |
+
+---
+
+## 🎛️ Slots disponibles
+
+* **header:** contenido del header
+* **sidebar:** contenido del sidebar (usa Alpine para manejar el colapso de labels/textos)
+* **footer:** contenido del footer
+* **default:** contenido principal del layout (main)
+
+---
+
+## 🧑‍💻 Ejemplo de uso
 
 ```blade
-<div class="flex min-h-screen">
-    <x-sidebar-cosis ... fixed="false" zIndex="40" />
-    <div class="flex-1 flex flex-col min-h-screen">
-        <x-header-cosis ... zIndex="50" />
-        <main class="flex p-8">
-            ...
-        </main>
+<x-layout-cosis
+    :stickyHeader="true"
+    :stickySidebar="true"
+    :footerFixed="true"
+    :collapsibleSidebar="true"
+    sidebarWidth="16"
+    collapsedSidebarWidth="4"
+>
+    <x-slot name="sidebar">
+        <div class="flex flex-col gap-4 w-full h-full">
+            <a class="flex items-center gap-2 px-4 py-2 rounded hover:bg-white/10">
+                <svg class="h-5 w-5"></svg>
+                <span x-show="!sidebarCollapsed" x-transition>Inicio</span>
+            </a>
+            <a class="flex items-center gap-2 px-4 py-2 rounded hover:bg-white/10">
+                <svg class="h-5 w-5"></svg>
+                <span x-show="!sidebarCollapsed" x-transition>Componentes</span>
+            </a>
+            <!-- ... más items -->
+        </div>
+    </x-slot>
+    <x-slot name="header">
+        <div class="h-full flex items-center px-4 bg-orange-300 text-orange-900 font-bold text-xl">
+            HEADER
+        </div>
+    </x-slot>
+    <x-slot name="footer">
+        <div class="w-full h-full flex items-center justify-center bg-blue-300 text-blue-900 font-bold text-xl">
+            FOOTER
+        </div>
+    </x-slot>
+    <div class="min-h-[80vh] flex flex-col justify-center items-center bg-violet-200 text-violet-900 font-bold text-2xl rounded-xl border-2 border-violet-400">
+        MAIN CONTENT
     </div>
-</div>
+</x-layout-cosis>
 ```
 
-**Claves:**
+---
 
-* Ambos componentes están en el flujo normal (`fixed=false`).
-* No hay solapamiento.
-* El header y el main se "achican" si el sidebar está abierto o mini.
+## 🛠️ Customización
+
+* Cambiá los valores de `sidebarWidth` y `collapsedSidebarWidth` para adaptar el ancho.
+* Usá Alpine `x-show`/`x-transition` en tus labels para que los textos desaparezcan suavemente al colapsar el sidebar.
+* Poné tu botón hamburguesa donde quieras y conéctalo a la función Alpine `toggleSidebar()`.
 
 ---
 
-## 2. Header sobre Sidebar
+## 🎨 Tips de diseño
 
-El header está siempre visible y por arriba, "flotando" sobre el sidebar.
+* **Animaciones:**
 
-```blade
-<div class="flex min-h-screen">
-    <x-sidebar-cosis ... fixed="false" zIndex="40" />
-    <div class="flex-1 flex flex-col min-h-screen">
-        <x-header-cosis ... fixed="true" zIndex="50" />
-        <main class="flex p-8 pt-14">
-            ...
-        </main>
-    </div>
-</div>
-```
+  * El ancho del sidebar y los textos usan `transition-all`/`transition-colors`.
+  * Usá transiciones Alpine para fades, slides y opacidad.
+* **Mobile:**
 
-**Claves:**
+  * Agregá breakpoints con Tailwind o Alpine según tus necesidades.
+* **Mini sidebar:**
 
-* Header usa `fixed="true"` y zIndex mayor.
-* Sidebar sigue en el flujo normal.
-* El `<main>` lleva `pt-14` (o el alto del header) para no quedar tapado.
+  * Al colapsar a `collapsedSidebarWidth`, ocultá los textos y dejá solo los íconos (usá Alpine `x-show`).
 
 ---
 
-## 3. Sidebar sobre Header
+## ❓ Preguntas frecuentes
 
-El sidebar "flota" y tapa al header y contenido.
+* **¿Cómo cambio el color del sidebar/header/footer?**
 
-```blade
-<div>
-    <x-header-cosis ... fixed="true" zIndex="40" />
-    <x-sidebar-cosis ... fixed="true" zIndex="60" style="top:0;" />
-    <main class="flex p-8 pt-14 pl-64">
-        ...
-    </main>
-</div>
-```
+  * Agregá clases Tailwind o custom directamente en cada slot.
+* **¿Se puede usar el botón hamburguesa para abrir/cerrar el sidebar?**
 
-**Claves:**
+  * ¡Sí! Declarando la función `toggleSidebar()` en `x-data` del layout, podés llamarla desde cualquier parte del layout.
+* **¿Funciona con Livewire?**
 
-* Ambos usan `fixed="true"`.
-* Sidebar tiene zIndex mayor.
-* El `<main>` lleva `pt-14` y `pl-64` (ajustar según alto del header/ancho sidebar y si está mini).
-* El sidebar puede tener shadow y animaciones propias.
+  * 100%. Alpine y Livewire conviven perfecto en este layout.
 
 ---
 
-## Ejemplo de Props para cada modo
+## 📦 Requisitos
 
-| Modo                 | Sidebar                   | Header                   |
-| -------------------- | ------------------------- | ------------------------ |
-| Push (default)       | fixed="false" zIndex="40" | (default) zIndex="50"    |
-| Header sobre Sidebar | fixed="false" zIndex="40" | fixed="true" zIndex="50" |
-| Sidebar sobre Header | fixed="true"  zIndex="60" | fixed="true" zIndex="40" |
+* Alpine.js >= 3.x
+* Tailwind >= 3.x
 
 ---
 
-## Tips & Consideraciones
+## 🏁 Listo para usar
 
-* Si usás ambos como `fixed`, recordá que el orden en el DOM y el z-index deciden cuál queda arriba.
-* El padding/margen en `<main>` es fundamental para evitar que el contenido quede tapado.
-* Podés alternar entre modos fácilmente cambiando sólo los props y el orden de los componentes en el layout.
-* El ancho del sidebar puede variar según mini/full; ajustá los paddings en `<main>` acorde.
-
----
-
-## Demo Playground
-
-Podés mostrar los tres modos en tu demo usando un simple select y cambiando el layout dinámicamente. ¡Esto le da máxima claridad a los usuarios sobre el poder del package!
+¡Incluí el componente en tu proyecto, personalizá a gusto y usá LaraCosis UI como base para todos tus proyectos!

@@ -12,7 +12,8 @@
     'collapsibleSidebar' => true, // Si true, el sidebar puede colapsar
     'sidebarCollapsed' => false, // Si true, el sidebar está colapsado
     'collapsedSidebarWidth' => 3, // Ancho del sidebar colapsado (ej: 4rem)
-    'hideCollapseButton' => true, // Si true, el botón de colapso está en el header
+    'hideCollapseButton' => false, // Si true, el botón de colapso está en el header
+    'hideMobileButton' => false, // Si true, no muestra el botón de colapso en mobile
 ])
 
 @php
@@ -44,7 +45,20 @@
 
 @endphp
 
-<div x-data="{ sidebarCollapsed: {{$sidebarCollapsed ? 'true' : 'false'}}, miniSidebar: {{$miniSidebar ? 'true' : 'false'}}, toggleSidebar() { this.sidebarCollapsed = !this.sidebarCollapsed } }" >
+<div
+    x-data="{
+        sidebarCollapsed: {{ $sidebarCollapsed ? 'true' : 'false' }},
+        miniSidebar: {{ $miniSidebar ? 'true' : 'false' }},
+        isMobile: window.matchMedia('(max-width: 767px)').matches,
+        toggleSidebar() { this.sidebarCollapsed = !this.sidebarCollapsed },
+        updateResponsive() {
+            this.isMobile = window.matchMedia('(max-width: 767px)').matches;
+            if(this.isMobile) this.miniSidebar = false;
+            else this.miniSidebar = {{ $miniSidebar ? 'true' : 'false' }};
+        }
+    }"
+    x-init="updateResponsive(); window.addEventListener('resize', () => updateResponsive())"
+>
     @if($sidebarOver)
         {{-- Variante: header arriba de todo --}}
         <div class="flex flex-col min-h-screen">
@@ -75,9 +89,12 @@
                 <aside
                     class="text-white flex flex-col transition-all duration-500 ease-in-out @if($stickySidebar) fixed top-0 left-0 min-h-full h-full z-30 @elseif($sidebarGrow) flex-col min-h-full sticky top-0 @endif"
                     style="{{ $asideStyle }}"
-                    :style="sidebarCollapsed ? 'width: {{ $collapsedSidebarWidthCss }}' : 'width: {{ $sidebarWidthCss }}'"
+                    :style="sidebarCollapsed
+                                ? ('width: ' + (miniSidebar ? '{{ $collapsedSidebarWidthCss }}' : '0rem') )
+                                : 'width: {{ $sidebarWidthCss }}'"
+
                 >
-                    @if($collapsibleSidebar && !$collapseButtonInHeader)
+                    @if($collapsibleSidebar && !$hideCollapseButton)
                         {{-- Botón de colapso en el sidebar --}}
                         <button
                             @click="sidebarCollapsed = !sidebarCollapsed"
@@ -116,21 +133,42 @@
                 </aside>
                 <div class="flex-1 flex flex-col min-h-screen transition-all duration-500"
                     :style="sidebarCollapsed
-                        ? 'margin-left: {{ $stickySidebar ? $collapsedSidebarWidthCss : '' }}'
+                        ? ('margin-left: ' + (miniSidebar ? '{{ $stickySidebar ? $collapsedSidebarWidthCss : '0rem' }}' : '0rem'))
                         : 'margin-left: {{ $stickySidebar ? $sidebarWidthCss : '' }}'"
                 >
                     <header class="@if($stickyHeader) sticky top-0 z-10 @endif flex-shrink-0"
                             style="{{ $headerStyle }}">
+
+                            @if(!$hideMobileButton)
+                                <button
+                                    @click="sidebarCollapsed = !sidebarCollapsed"
+                                    type="button"
+                                    aria-label="Abrir menú"
+                                    class="flex flex-col justify-center items-center w-10 h-10 rounded-md focus:outline-none bg-transparent"
+                                >
+                                    <span class="block w-7 h-0.5 bg-current mb-1"></span>
+                                    <span class="block w-7 h-0.5 bg-current mb-1"></span>
+                                    <span class="block w-7 h-0.5 bg-current"></span>
+                                </button>
+                            @endif
+
+
+
                         {{ $header ?? '' }}
                     </header>
                     <main class="flex-1 @if($footerFixed) mb-12 @endif">
                         {{ $slot }}
                     </main>
-                    <footer class="flex items-center justify-center w-full
+                    <footer
+                        class="flex items-center justify-center w-full transition-all duration-500
                             @if($footerFixed) fixed bottom-0 right-0 z-10 mt-2 @endif"
-                            style="{{ $footerStyle }} {{ $footerFixed ? "padding-left: $sidebarWidthCss;" : '' }}">
+                        :style="sidebarCollapsed
+                            ? ('padding-left: ' + (miniSidebar ? '{{ $stickySidebar ? $collapsedSidebarWidthCss : '0rem' }}' : '0rem') + ';{{ $footerStyle }}')
+                            : 'padding-left: {{ $stickySidebar ? $sidebarWidthCss : '' }};{{ $footerStyle }}'"
+                    >
                         {{ $footer ?? '' }}
                     </footer>
+
                 </div>
             </div>
         </div>
