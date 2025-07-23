@@ -1,6 +1,6 @@
 @props([
     'items' => [],
-    'sidebarCollapsed' => false,
+    'sidebarBind' => '',
     'highlightMode' => 'standard',
     'highlightParentClass' => '',
     'highlightChildClass' => '',
@@ -52,7 +52,9 @@
 <nav
     x-data="{
         open: {},
+        sidebarIsCollapsed: false,
         init() {
+            // Inicializar open por los items activos
             @foreach($items as $category)
                 @foreach($category['items'] as $item)
                     @php $id = navCosisId($item); @endphp
@@ -61,6 +63,17 @@
                     @endif
                 @endforeach
             @endforeach
+
+
+            if (typeof {{$sidebarBind}} !== 'undefined') {
+                this.sidebarIsCollapsed = {{$sidebarBind}};
+                $watch('{{$sidebarBind}}', value => {
+                    // Actualizar el estado de sidebarIsCollapsed
+                    // Esto permite que el componente reaccione a cambios externos
+                    // como el botón de colapso del sidebar
+                    this.sidebarIsCollapsed = value;
+                });
+            }
         },
         toggle(id) { this.open[id] = !this.open[id]; },
         isOpen(id) { return !!this.open[id]; }
@@ -69,7 +82,7 @@
 >
     @foreach($items as $category)
         <div>
-            <div class="{{ $categoryClass }} {{ $sidebarCollapsed === true || $sidebarCollapsed === 'true' ? 'hidden' : 'block' }}">
+            <div class="{{ $categoryClass }} transition-all duration-500"  x-show="!sidebarIsCollapsed" :class="{ 'hidden': sidebarIsCollapsed }">
                 {{ $category['category'] }}
             </div>
             <div class="space-y-1">
@@ -112,22 +125,26 @@
                             style="cursor: pointer;"
                         >
                             {!! $iconHtml !!}
-                            <span class="truncate {{ $itemLabelClass }}" @if($sidebarCollapsed === true || $sidebarCollapsed === 'true') style="display:none;" @endif>
+                            <span class="truncate {{ $itemLabelClass }} transition-all duration-500" x-show="!sidebarIsCollapsed" :class="{ 'hidden': sidebarIsCollapsed }">
                                 {{ $item['label'] }}
                             </span>
                             @if($badge)
-                                <span class="ml-2 text-xs bg-green-600 text-white px-2 py-0.5 rounded-full">{{ $badge }}</span>
+                                <span class="ml-2 text-xs bg-green-600 text-white px-2 py-0.5 rounded-full transition-all duration-500" x-show="!sidebarIsCollapsed" :class="{ 'hidden': sidebarIsCollapsed }">{{ $badge }}</span>
                             @endif
                             @if($hasChildren)
-                                <i class="fas fa-caret-down ml-auto text-xs opacity-60"
-                                    :class="{ 'rotate-180': isOpen('{{ $itemId }}') }"
+                                <i class="fas fa-caret-down ml-auto text-xs opacity-60 transition-all duration-500" x-show="!sidebarIsCollapsed"
+                                    :class="{ 'rotate-180': isOpen('{{ $itemId }}'),  'hidden': sidebarIsCollapsed }"
                                     style="transition: transform 0.2s"
                                 ></i>
                             @endif
                         </a>
                         @if($hasChildren)
                             <div
-                                class="ml-7 {{ $childBorderClass }} pl-3 mt-1 space-y-1"
+                                class="space-y-1 {{ $childBorderClass }}"
+                                :class="{
+                                    'ml-7 pl-3 mt-1': !sidebarIsCollapsed,
+                                    'ml-1 pl-1 mt-1': sidebarIsCollapsed
+                                }"
                                 x-show="isOpen('{{ $itemId }}')"
                                 x-transition
                                 style="display: none;"
@@ -161,15 +178,17 @@
                                         href="{{ $child['route'] ?? '#' }}"
                                         class="{{ $finalChildClass }}{{ $childDisabled ? ' opacity-60 pointer-events-none' : '' }}"
                                         title="{{ $child['tooltip'] ?? '' }}"
+                                        :class="{ 'justify-center': sidebarIsCollapsed, 'justify-start': !sidebarIsCollapsed }"
                                         @if(!empty($child['tooltip'])) x-tooltip="'{{ $child['tooltip'] }}'" @endif
                                         @if($childExternal) target="_blank" rel="noopener" @endif
                                     >
+
                                         {!! $childIcon !!}
-                                        <span class="truncate {{ $childLabelClass }}" @if($sidebarCollapsed === true || $sidebarCollapsed === 'true') style="display:none;" @endif>
+                                        <span class="truncate {{ $childLabelClass }} transition-all duration-500" x-show="!sidebarIsCollapsed" :class="{ 'hidden': sidebarIsCollapsed }">
                                             {{ $child['label'] }}
                                         </span>
                                         @if($childBadge)
-                                            <span class="ml-2 text-xs bg-green-600 text-white px-2 py-0.5 rounded-full">{{ $childBadge }}</span>
+                                            <span class="ml-2 text-xs bg-green-600 text-white px-2 py-0.5 rounded-full transition-all duration-500" x-show="!sidebarIsCollapsed" :class="{ 'hidden': sidebarIsCollapsed }">{{ $childBadge }}</span>
                                         @endif
                                     </a>
                                 @endforeach

@@ -186,6 +186,26 @@ See `/config/twigui/navs/default.php` for a comprehensive, documented sample cov
 
 ---
 
+## Cambiar variable Alpine para colapso (sidebar-bind)
+
+Por defecto, el componente NavCosis usa la variable Alpine sidebarCollapsed para mostrar/ocultar labels y categorías cuando el sidebar está mini.
+
+Si tu layout usa otra variable Alpine (ej: sidebarOpen), podés pasar el nombre de la variable con el parámetro:
+
+<x-nav-cosis sidebar-bind="sidebarOpen" />
+
+Esto hará que el componente reaccione a la variable sidebarOpen de tu Alpine principal.Si no se pasa el parámetro, usa sidebarCollapsed por defecto (plug & play con TwigUI).
+
+Uso recomendado:
+
+```php
+sidebar-bind="sidebarCollapsed" (default, estándar TwigUI)
+
+sidebar-bind="miVariablePropia" (si tu layout usa otra)
+```
+> TIP: El valor de sidebar-bind debe ser el nombre de la variable Alpine disponible en el contexto del componente.
+
+---
 ## 🌈 Supported Colors
 
 * `green`, `blue`, `violet`, `red`, `emerald`, `yellow`, `pink`, `sky`, `lime`, `slate`, `indigo`, `fuchsia`, `orange`, `teal`

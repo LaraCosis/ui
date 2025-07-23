@@ -12,6 +12,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-green-100/40 dark:hover:bg-green-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-green-500 dark:border-green-400',
     ],
     'blue' => [
         'highlightParentText' => 'text-blue-600 dark:text-blue-400 font-bold',
@@ -24,6 +25,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-blue-100/40 dark:hover:bg-blue-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-blue-500 dark:border-blue-400',
     ],
     'violet' => [
         'highlightParentText' => 'text-violet-600 dark:text-violet-400 font-bold',
@@ -36,6 +38,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-violet-100/40 dark:hover:bg-violet-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-violet-500 dark:border-violet-400',
     ],
     'red' => [
         'highlightParentText' => 'text-red-600 dark:text-red-400 font-bold',
@@ -48,6 +51,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-red-100/40 dark:hover:bg-red-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-red-500 dark:border-red-400',
     ],
     'emerald' => [
         'highlightParentText' => 'text-emerald-600 dark:text-emerald-400 font-bold',
@@ -60,6 +64,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-emerald-100/40 dark:hover:bg-emerald-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-emerald-500 dark:border-emerald-400',
     ],
     'yellow' => [
         'highlightParentText' => 'text-yellow-700 dark:text-yellow-300 font-bold',
@@ -72,6 +77,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-yellow-100/40 dark:hover:bg-yellow-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-yellow-500 dark:border-yellow-400',
     ],
     'pink' => [
         'highlightParentText' => 'text-pink-600 dark:text-pink-400 font-bold',
@@ -84,6 +90,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-pink-100/40 dark:hover:bg-pink-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-pink-500 dark:border-pink-400',
     ],
     'sky' => [
         'highlightParentText' => 'text-sky-600 dark:text-sky-400 font-bold',
@@ -96,6 +103,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-sky-100/40 dark:hover:bg-sky-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-sky-500 dark:border-sky-400',
     ],
     'lime' => [
         'highlightParentText' => 'text-lime-600 dark:text-lime-400 font-bold',
@@ -108,6 +116,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-lime-100/40 dark:hover:bg-lime-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-lime-500 dark:border-lime-400',
     ],
     'slate' => [
         'highlightParentText' => 'text-slate-600 dark:text-slate-300 font-bold',
@@ -120,6 +129,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-slate-100/40 dark:hover:bg-slate-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-slate-500 dark:border-slate-400',
     ],
     'indigo' => [
         'highlightParentText' => 'text-indigo-600 dark:text-indigo-400 font-bold',
@@ -132,6 +142,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-indigo-100/40 dark:hover:bg-indigo-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-indigo-500 dark:border-indigo-400',
     ],
     'fuchsia' => [
         'highlightParentText' => 'text-fuchsia-600 dark:text-fuchsia-400 font-bold',
@@ -144,6 +155,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-fuchsia-100/40 dark:hover:bg-fuchsia-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-fuchsia-500 dark:border-fuchsia-400',
     ],
     'orange' => [
         'highlightParentText' => 'text-orange-600 dark:text-orange-400 font-bold',
@@ -156,6 +168,7 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-orange-100/40 dark:hover:bg-orange-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-orange-500 dark:border-orange-400',
     ],
     'teal' => [
         'highlightParentText' => 'text-teal-600 dark:text-teal-400 font-bold',
@@ -168,5 +181,6 @@ return [
         'itemClassText' => 'flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition',
         'childItemClassStandard' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3 hover:bg-teal-100/40 dark:hover:bg-teal-800/30',
         'childItemClassText' => 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-700 dark:text-gray-200 font-medium transition pl-3',
+        'childBorderClass' => 'border-l border-teal-500 dark:border-teal-400',
     ],
 ];

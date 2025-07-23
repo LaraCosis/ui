@@ -9,7 +9,7 @@ class NavCosis extends Component
 {
 
     public $items;
-    public $sidebarCollapsed;
+    public $sidebarBind;
     public $highlightMode;
     public $highlightParentClass;
     public $highlightChildClass;
@@ -24,7 +24,7 @@ class NavCosis extends Component
 
     public function __construct(
         $items = null,
-        $sidebarCollapsed = false,
+        $sidebarBind = 'sidebarCollapsed',
         $highlightMode = 'standard',
         $highlightParentClass = null,
         $highlightChildClass = null,
@@ -37,7 +37,7 @@ class NavCosis extends Component
         $hoverTextChildClass = null,
         $color = 'green',
     ) {
-        $this->sidebarCollapsed = $sidebarCollapsed;
+        $this->sidebarBind = $sidebarBind;
         $this->highlightMode = $highlightMode;
 
         $presets = $this->getColorPresets();
@@ -71,9 +71,9 @@ class NavCosis extends Component
         $this->hoverTextClass = $hoverTextClass ?? $preset['hoverText'];
         $this->hoverTextChildClass = $hoverTextChildClass ?? $preset['hoverTextChild'];
 
-        $this->categoryClass = $categoryClass;
-        $this->iconClass = $iconClass;
-        $this->childBorderClass = $childBorderClass;
+        $this->categoryClass = $preset['categoryClass'] ?? $categoryClass;
+        $this->iconClass = $preset['iconClass'] ?? $iconClass;
+        $this->childBorderClass = $preset['childBorderClass'] ?? $childBorderClass;
         $this->items = $this->resolveItems($items);
     }
 
